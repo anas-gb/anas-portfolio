@@ -4,427 +4,873 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Aznorix | Web & App Development Studio</title>
-<meta name="description" content="Aznorix builds scalable web applications, Android apps, and custom software systems for startups and businesses.">
+<title>Aznorix | Premium Web & App Development for Growth-Focused Brands</title>
+<meta name="description" content="Aznorix designs and builds high-performance websites, Android apps, and custom software systems that help startups and businesses scale faster.">
+<meta property="og:title" content="Aznorix | Premium Web & App Development Studio">
+<meta property="og:description" content="Trusted by global clients for fast delivery, clean engineering, and growth-focused digital products.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aznorix.com/">
+<meta property="og:image" content="/favicon-96x96.png">
 
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 <style>
-:root{
---bg:#020617;
---text:#e2e8f0;
---muted:#94a3b8;
---card:rgba(15,23,42,.75);
---nav:rgba(2,6,23,.9);
---line:rgba(148,163,184,.18);
---primary:#14b8a6;
---secondary:#f97316;
---chip:rgba(15,23,42,.6);
+:root {
+  --bg: #020617;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --card: rgba(15,23,42,0.75);
+  --nav: rgba(2,6,23,0.9);
+  --line: rgba(148,163,184,0.18);
+  --primary: #14b8a6;
+  --secondary: #f97316;
+  --chip: rgba(15,23,42,0.6);
 }
 
-.theme-light{
---bg:#f8fafc;
---text:#0f172a;
---muted:#475569;
---card:rgba(255,255,255,.95);
---nav:rgba(248,250,252,.95);
---line:rgba(15,23,42,.15);
---primary:#0f766e;
---secondary:#ea580c;
---chip:rgba(226,232,240,.9);
+.theme-light {
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --muted: #475569;
+  --card: rgba(255,255,255,0.95);
+  --nav: rgba(248,250,252,0.95);
+  --line: rgba(15,23,42,0.15);
+  --primary: #0f766e;
+  --secondary: #ea580c;
+  --chip: rgba(226,232,240,0.9);
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-body{
-font-family:'Outfit',sans-serif;
-background:var(--bg);
-color:var(--text);
-transition:.3s ease;
-overflow-x:hidden;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
 }
 
 /* Background */
-body::before{
-content:"";
-position:fixed;
-inset:0;
-z-index:-3;
-background:
-radial-gradient(circle at 20% 30%, rgba(20,184,166,.12), transparent 45%),
-radial-gradient(circle at 80% 70%, rgba(249,115,22,.12), transparent 45%),
-linear-gradient(120deg, var(--bg), color-mix(in oklab, var(--bg) 85%, black));
-animation:gradientMove 22s ease-in-out infinite alternate;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(20,184,166,0.12), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(249,115,22,0.12), transparent 45%),
+    linear-gradient(120deg, var(--bg), color-mix(in oklab, var(--bg) 85%, black));
+  animation: gradientMove 22s ease-in-out infinite alternate;
 }
 
-@keyframes gradientMove{
-0%{transform:scale(1)}
-50%{transform:scale(1.04)}
-100%{transform:scale(1)}
+@keyframes gradientMove {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
 }
 
-#bg-canvas{
-position:fixed;
-inset:0;
-z-index:-2;
-pointer-events:none;
-opacity:.3;
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.3;
 }
 
-.container{width:min(1100px,92%);margin:auto}
-
-.nav{
-position:fixed;top:0;width:100%;
-background:var(--nav);
-border-bottom:1px solid var(--line);
-backdrop-filter:blur(10px);
-z-index:1000;
+.container {
+  width: min(1100px, 92%);
+  margin: auto;
 }
 
-.nav-inner{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:14px 0;
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--nav);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
 }
 
-.brand{font-weight:700;color:var(--text);text-decoration:none}
-
-.menu{display:flex;gap:18px;align-items:center}
-
-.menu a,.menu button,.menu select{
-background:none;border:none;color:var(--text);
-font-weight:600;cursor:pointer;font-size:.9rem;
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
 }
 
-.pill{
-border:1px solid var(--line)!important;
-background:var(--chip)!important;
-border-radius:999px;padding:6px 12px;
+.brand {
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: 0.08em;
 }
 
-.mobile-toggle{
-display:none;font-size:1.4rem;background:none;border:none;color:var(--text);cursor:pointer;
+.menu {
+  display: flex;
+  gap: 18px;
+  align-items: center;
 }
 
-section{padding:100px 0}
-
-.hero{
-min-height:100vh;
-display:flex;align-items:center;justify-content:center;
-text-align:center;padding-top:80px;
+.menu a,
+.menu button,
+.menu select {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: none;
 }
 
-h1{font-size:clamp(2.5rem,6vw,4.6rem);margin-bottom:15px}
-.subtitle{max-width:720px;margin:auto;color:var(--muted);font-size:clamp(1rem,2.4vw,1.2rem)}
-
-.cta-row{margin-top:30px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-
-.btn{
-border-radius:10px;padding:12px 18px;text-decoration:none;
-font-weight:700;border:1px solid var(--line);
-background:var(--chip);color:var(--text);
-transition:.25s ease;display:inline-block;
+.pill {
+  border: 1px solid var(--line) !important;
+  background: var(--chip) !important;
+  border-radius: 999px;
+  padding: 6px 12px;
 }
 
-.btn.primary{
-background:linear-gradient(90deg,var(--primary),var(--secondary));
-color:#fff;border:none;
+.mobile-toggle {
+  display: none;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
 }
 
-.btn:hover{transform:translateY(-4px)}
-
-.grid-3{
-display:grid;grid-template-columns:repeat(3,1fr);
-gap:22px;margin-top:40px;
+section {
+  padding: 105px 0;
+  border-top: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
 }
 
-.card{
-background:var(--card);
-border:1px solid var(--line);
-border-radius:18px;padding:24px;
-transition:.3s ease;
-backdrop-filter:blur(10px);
+section:first-of-type {
+  border-top: none;
 }
 
-.card:hover{transform:translateY(-8px);border-color:var(--primary)}
-
-.section-title{font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:10px}
-.section-sub{color:var(--muted);margin-bottom:20px}
-
-.reveal{opacity:0;transform:translateY(40px);transition:.7s ease}
-.reveal.active{opacity:1;transform:translateY(0)}
-
-footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--muted)}
-
-.whatsapp-float{
-position:fixed;bottom:20px;right:20px;
-background:#25D366;color:white;border-radius:50%;
-width:55px;height:55px;display:flex;
-align-items:center;justify-content:center;
-font-size:26px;text-decoration:none;
-box-shadow:0 8px 20px rgba(0,0,0,.3);z-index:1000;
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 90px;
 }
 
-@media(max-width:900px){
-.grid-3{grid-template-columns:1fr}
-.menu{
-position:absolute;top:60px;right:0;
-background:var(--nav);flex-direction:column;
-align-items:flex-start;width:220px;
-padding:15px;display:none;border:1px solid var(--line);
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+  margin-bottom: 16px;
+  line-height: 1.07;
 }
-.menu.show{display:flex}
-.mobile-toggle{display:block}
+
+.subtitle {
+  max-width: 760px;
+  margin: auto;
+  color: var(--muted);
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
 }
+
+.hero-accent {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 24px color-mix(in srgb, var(--primary) 45%, transparent);
+}
+
+.hero-underline {
+  width: min(220px, 40vw);
+  height: 3px;
+  border-radius: 999px;
+  margin: 18px auto 6px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--primary) 45%, transparent));
+}
+
+.cta-row {
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border-radius: 10px;
+  padding: 12px 18px;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid var(--line);
+  background: var(--chip);
+  color: var(--text);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, filter 0.25s ease;
+  display: inline-block;
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: #fff;
+  border: none;
+  box-shadow: 0 10px 26px color-mix(in srgb, var(--primary) 26%, transparent);
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.24);
+  filter: saturate(1.06);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 40px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 36px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  transition: transform 0.32s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: color-mix(in srgb, var(--primary) 72%, var(--line));
+  box-shadow: 0 16px 38px rgba(0,0,0,0.18), 0 0 0 1px color-mix(in srgb, var(--primary) 26%, transparent) inset;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.section-sub {
+  color: var(--muted);
+  margin-bottom: 8px;
+  max-width: 760px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.kicker {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 30px 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+@media (max-width: 900px) {
+  section {
+    padding: 88px 0;
+  }
+  
+  .grid-3,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: var(--nav);
+    flex-direction: column;
+    align-items: flex-start;
+    width: 220px;
+    padding: 15px;
+    display: none;
+    border: 1px solid var(--line);
+  }
+  
+  .menu.show {
+    display: flex;
+  }
+  
+  .mobile-toggle {
+    display: block;
+  }
+  
+  .hero {
+    padding-top: 88px;
+  }
+  
+  .cta-row {
+    gap: 10px;
+  }
+}
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(120deg, var(--bg), color-mix(in oklab, var(--bg) 82%, black));
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-wrap {
+  text-align: center;
+}
+
+.loader-logo {
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  font-size: clamp(1rem, 2.8vw, 1.25rem);
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.loader-bar {
+  width: min(220px, 56vw);
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--line) 80%, transparent);
+  overflow: hidden;
+}
+
+.loader-fill {
+  height: 100%;
+  width: 45%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  animation: loaderSlide 1.15s ease-in-out infinite;
+}
+
+@keyframes loaderSlide {
+  0% { transform: translateX(-110%); }
+  100% { transform: translateX(260%); }
+}
+
+[dir="rtl"] .hero-underline {
+  margin: 18px auto 6px;
+}
+
+[dir="rtl"] .menu {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .whatsapp-float {
+  right: auto;
+  left: 20px;
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="preloader" id="preloader" aria-live="polite" aria-label="Loading website" role="status">
+  <div class="loader-wrap">
+    <p class="loader-logo">AZNORIX</p>
+    <div class="loader-bar" aria-hidden="true"><div class="loader-fill"></div></div>
+  </div>
+</div>
+
 <canvas id="bg-canvas"></canvas>
 
 <nav class="nav">
-<div class="container nav-inner">
-<a class="brand">AZNORIX</a>
-<button class="mobile-toggle" id="mobileToggle">☰</button>
-<div class="menu" id="menu">
-<a href="#services" data-i18n="navServices">Services</a>
-<a href="#featured" data-i18n="navProjects">Projects</a>
-<a href="#contact" data-i18n="navContact">Contact</a>
-<a href="/portfolio/">Portfolio</a>
-<button class="pill" id="themeToggle">☀️</button>
-<select class="pill" id="langSwitcher">
-<option value="en">EN</option>
-<option value="ur">اردو</option>
-<option value="ar">العربية</option>
-</select>
-</div>
-</div>
+  <div class="container nav-inner">
+    <a class="brand" href="#">AZNORIX</a>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation menu">☰</button>
+    <div class="menu" id="menu">
+      <a href="#services" data-i18n="navServices">Services</a>
+      <a href="#featured" data-i18n="navProjects">Projects</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+      <a href="/portfolio/" data-i18n="navPortfolio">Portfolio</a>
+      <button class="pill" id="themeToggle" aria-label="Toggle theme">☀️</button>
+      <select class="pill" id="langSwitcher" aria-label="Switch language">
+        <option value="en">EN</option>
+        <option value="ur">اردو</option>
+        <option value="ar">العربية</option>
+      </select>
+    </div>
+  </div>
 </nav>
 
 <section class="hero container reveal">
-<div>
-<h1 data-i18n="heroTitle">Modern Web & App Development Studio</h1>
-<p class="subtitle" data-i18n="heroSub">
-Aznorix builds scalable, performance-driven digital systems engineered for growth.
-</p>
-<div class="cta-row">
-<a class="btn primary" href="#contact" data-i18n="heroBtn">Start a Project</a>
-<a class="btn" href="https://wa.me/923393041514" target="_blank">WhatsApp</a>
-</div>
-</div>
+  <div>
+    <span class="kicker" data-i18n="heroKicker">Elite Digital Engineering</span>
+    <h1><span data-i18n="heroTitlePrefix">We Build</span> <span class="hero-accent" data-i18n="heroTitleAccent">High-Converting</span> <span data-i18n="heroTitleSuffix">Software & App Experiences</span></h1>
+    <div class="hero-underline"></div>
+    <p class="subtitle" data-i18n="heroSub">
+      Aznorix partners with ambitious brands to deliver fast, scalable, and conversion-driven products that turn traffic into revenue.
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="#contact" data-i18n="heroBtn">Book a Free Strategy Call</a>
+      <a class="btn" href="https://wa.me/923393041514" target="_blank" rel="noopener noreferrer" data-i18n="heroWhatsAppBtn">Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section id="trust" class="container reveal">
+  <span class="kicker" data-i18n="trustKicker">Trust & Authority</span>
+  <h2 class="section-title" data-i18n="trustTitle">Why Businesses Choose Aznorix</h2>
+  <p class="section-sub" data-i18n="trustSub">Built with quality-first engineering and delivery discipline trusted by clients worldwide.</p>
+  <div class="grid-3">
+    <div class="card">
+      <h3 data-i18n="trust1t">5-Star Rated</h3>
+      <p data-i18n="trust1d">Consistently excellent client feedback for quality, communication, and outcomes.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="trust2t">Rapid Delivery</h3>
+      <p data-i18n="trust2d">Lean execution process that ships production-ready milestones on time.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="trust3t">International Clients</h3>
+      <p data-i18n="trust3d">Proven experience collaborating across time zones with global founders and teams.</p>
+    </div>
+  </div>
 </section>
 
 <section id="services" class="container reveal">
-<h2 class="section-title" data-i18n="servicesTitle">What We Do</h2>
-<div class="grid-3">
-<div class="card"><h3 data-i18n="s1t">Web Development</h3><p data-i18n="s1d">High-performance websites built for scale.</p></div>
-<div class="card"><h3 data-i18n="s2t">Mobile Apps</h3><p data-i18n="s2d">Android apps engineered with scalable logic.</p></div>
-<div class="card"><h3 data-i18n="s3t">Custom Software</h3><p data-i18n="s3d">Automation systems and tailored solutions.</p></div>
-</div>
+  <span class="kicker" data-i18n="servicesKicker">Core Services</span>
+  <h2 class="section-title" data-i18n="servicesTitle">What We Do</h2>
+  <p class="section-sub" data-i18n="servicesSub">End-to-end product engineering for modern businesses.</p>
+  <div class="grid-3">
+    <div class="card"><h3 data-i18n="s1t">Web Development</h3><p data-i18n="s1d">High-performance websites built for scale.</p></div>
+    <div class="card"><h3 data-i18n="s2t">Mobile Apps</h3><p data-i18n="s2d">Android apps engineered with scalable logic.</p></div>
+    <div class="card"><h3 data-i18n="s3t">Custom Software</h3><p data-i18n="s3d">Automation systems and data-entry solutions.</p></div>
+  </div>
+</section>
+
+<section id="testimonials" class="container reveal">
+  <span class="kicker" data-i18n="testimonialsKicker">Client Feedback</span>
+  <h2 class="section-title" data-i18n="testimonialsTitle">5-Star Fiverr Reviews</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3 data-i18n="t1n">Fiverr Client-rookie creator</h3>
+      <p data-i18n="t1r">★★★★★ "Seller performs detailed work with much creativity. Very professional, excellent communications, performs tasks successfully. Will return again."</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="t2n">Fiverr Client — Custom Web Tool</h3>
+      <p data-i18n="t2r">★★★★★ "Aznorix understood the requirements quickly and built a clean, fast solution. Highly recommended."</p>
+    </div>
+  </div>
 </section>
 
 <section id="featured" class="container reveal">
-<h2 class="section-title" data-i18n="projectsTitle">Featured Projects</h2>
-<div class="grid-3">
-<div class="card">
-<h3>Aljil Mobiles</h3>
-<p>E-commerce style product system.</p>
-<a class="btn" href="https://github.com/anas-gb/aljil-mobiles" target="_blank">View Repo</a>
-</div>
-<div class="card">
-<h3>LovelyPDFs</h3>
-<p>Web-based PDF utility system.</p>
-<a class="btn" href="https://github.com/anas-gb/lovelypdfs" target="_blank">View Repo</a>
-</div>
-<div class="card">
-<h3>Pixelbook (EVE) Windows 11 Driver Recovery</h3>
-<p>Systems engineering project: Recovered Windows 11 audio stack on Google Pixelbook EVE with Intel SST drivers, ACPI fixes, and dual-boot stabilization.</p>
-<a class="btn" href="https://github.com/anas-gb/pixelbook-eve-windows11-drivers-guide" target="_blank">View Repo</a>
-</div>
-</div>
+  <span class="kicker" data-i18n="projectsKicker">Selected Work</span>
+  <h2 class="section-title" data-i18n="projectsTitle">Featured Projects</h2>
+  <div class="grid-3">
+    <div class="card">
+      <h3>Aljil Mobiles</h3>
+      <p>E-commerce style product system.</p>
+      <a class="btn" href="https://github.com/anas-gb/aljil-mobiles" target="_blank" rel="noopener noreferrer">View Repo</a>
+    </div>
+    <div class="card">
+      <h3>LovelyPDFs</h3>
+      <p>Web-based PDF utility system.</p>
+      <a class="btn" href="https://github.com/anas-gb/lovelypdfs" target="_blank" rel="noopener noreferrer">View Repo</a>
+    </div>
+    <div class="card">
+      <h3>Pixelbook (EVE) Windows 11 Driver Recovery</h3>
+      <p>Systems engineering project: Recovered Windows 11 audio stack on Google Pixelbook EVE with Intel SST drivers, ACPI fixes, and dual-boot stabilization.</p>
+      <a class="btn" href="https://github.com/anas-gb/pixelbook-eve-windows11-drivers-guide" target="_blank" rel="noopener noreferrer">View Repo</a>
+    </div>
+  </div>
 </section>
 
 <section id="contact" class="container reveal">
-<h2 class="section-title" data-i18n="contactTitle">Start Your Project</h2>
-<form action="https://formsubmit.co/anasgb496@outlook.com" method="POST" class="card">
-<input type="hidden" name="_captcha" value="false">
-<input type="text" name="name" placeholder="Your Name" required style="width:100%;margin-bottom:12px;padding:10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--text);">
-<input type="email" name="email" placeholder="Your Email" required style="width:100%;margin-bottom:12px;padding:10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--text);">
-<textarea name="message" rows="4" placeholder="Describe your project..." required style="width:100%;margin-bottom:12px;padding:10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--text);"></textarea>
-<button class="btn primary" type="submit" data-i18n="sendBtn">Send Message</button>
-</form>
+  <span class="kicker" data-i18n="contactKicker">Let's Build</span>
+  <h2 class="section-title" data-i18n="contactTitle">Start Your Project</h2>
+  <form action="https://formsubmit.co/anasgb496@outlook.com" method="POST" class="card">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://aznorix.com/thank-you">
+    <input type="text" name="name" placeholder="Your Name" data-i18n-placeholder="formNamePlaceholder" required style="width:100%;margin-bottom:12px;padding:10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--text);">
+    <input type="email" name="email" placeholder="Your Email" data-i18n-placeholder="formEmailPlaceholder" required style="width:100%;margin-bottom:12px;padding:10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--text);">
+    <textarea name="message" rows="4" placeholder="Describe your project..." data-i18n-placeholder="formMessagePlaceholder" required style="width:100%;margin-bottom:12px;padding:10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--text);"></textarea>
+    <button class="btn primary" type="submit" data-i18n="sendBtn">Send Message</button>
+  </form>
 </section>
 
 <footer>© 2026 Aznorix</footer>
-<a href="https://wa.me/923393041514" class="whatsapp-float" target="_blank">💬</a>
+
+<a href="https://wa.me/923393041514" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬</a>
 
 <script>
-/* Language System */
-const translations={
-en:{
-navServices:"Services",
-navProjects:"Projects",
-navContact:"Contact",
-heroTitle:"Modern Web & App Development Studio",
-heroSub:"Aznorix builds scalable, performance-driven digital systems engineered for growth.",
-heroBtn:"Start a Project",
-servicesTitle:"What We Do",
-s1t:"Web Development",
-s1d:"High-performance websites built for scale.",
-s2t:"Mobile Apps",
-s2d:"Android apps engineered with scalable logic.",
-s3t:"Custom Software",
-s3d:"Automation systems and tailored solutions.",
-projectsTitle:"Featured Projects",
-contactTitle:"Start Your Project",
-sendBtn:"Send Message"
-},
-ur:{
-navServices:"سروسز",
-navProjects:"پروجیکٹس",
-navContact:"رابطہ",
-heroTitle:"ماڈرن ویب اور ایپ ڈیولپمنٹ اسٹوڈیو",
-heroSub:"Aznorix اسکیل ایبل اور پرفارمنس فوکسڈ سسٹمز بناتا ہے۔",
-heroBtn:"پروجیکٹ شروع کریں",
-servicesTitle:"ہم کیا کرتے ہیں",
-s1t:"ویب ڈیولپمنٹ",
-s1d:"تیز اور جدید ویب سائٹس۔",
-s2t:"موبائل ایپس",
-s2d:"مضبوط اینڈرائیڈ ایپس۔",
-s3t:"کسٹم سافٹ ویئر",
-s3d:"ڈیجیٹل ٹولز اور آٹومیشن۔",
-projectsTitle:"نمایاں پروجیکٹس",
-contactTitle:"اپنا پروجیکٹ شروع کریں",
-sendBtn:"پیغام بھیجیں"
-},
-ar:{
-navServices:"الخدمات",
-navProjects:"المشاريع",
-navContact:"تواصل",
-heroTitle:"استوديو تطوير ويب وتطبيقات حديث",
-heroSub:"Aznorix يبني أنظمة رقمية قابلة للتوسع.",
-heroBtn:"ابدأ مشروعك",
-servicesTitle:"ماذا نقدم",
-s1t:"تطوير الويب",
-s1d:"مواقع حديثة وسريعة.",
-s2t:"تطوير التطبيقات",
-s2d:"تطبيقات أندرويد قوية.",
-s3t:"برمجيات مخصصة",
-s3d:"حلول وأدوات رقمية.",
-projectsTitle:"المشاريع المميزة",
-contactTitle:"ابدأ مشروعك",
-sendBtn:"إرسال"
-}
-};
+(function() {
+  // Preloader
+  const preloader = document.getElementById("preloader");
+  window.addEventListener("load", function() {
+    preloader.classList.add("hidden");
+    setTimeout(function() {
+      if (preloader.parentNode) preloader.remove();
+    }, 650);
+  });
 
-function applyLang(lang){
-const dict=translations[lang]||translations.en;
-document.documentElement.lang=lang;
-document.documentElement.dir=(lang==="ar"||lang==="ur")?"rtl":"ltr";
-document.querySelectorAll("[data-i18n]").forEach(el=>{
-const key=el.getAttribute("data-i18n");
-if(dict[key]) el.textContent=dict[key];
-});
-localStorage.setItem("lang",lang);
-}
+  // Language translations
+  const translations = {
+    en: {
+      navServices: "Services",
+      navProjects: "Projects",
+      navContact: "Contact",
+      navPortfolio: "Portfolio",
+      heroKicker: "Elite Digital Engineering",
+      heroTitlePrefix: "We Build",
+      heroTitleAccent: "High-Converting",
+      heroTitleSuffix: "Software & App Experiences",
+      heroSub: "Aznorix partners with ambitious brands to deliver fast, scalable, and conversion-driven products that turn traffic into revenue.",
+      heroBtn: "Book a Free Strategy Call",
+      heroWhatsAppBtn: "Chat on WhatsApp",
+      trustKicker: "Trust & Authority",
+      trustTitle: "Why Businesses Choose Aznorix",
+      trustSub: "Built with quality-first engineering and delivery discipline trusted by clients worldwide.",
+      trust1t: "5-Star Rated",
+      trust1d: "Consistently excellent client feedback for quality, communication, and outcomes.",
+      trust2t: "Rapid Delivery",
+      trust2d: "Lean execution process that ships production-ready milestones on time.",
+      trust3t: "International Clients",
+      trust3d: "Proven experience collaborating across time zones with global founders and teams.",
+      servicesKicker: "Core Services",
+      servicesTitle: "What We Do",
+      servicesSub: "End-to-end product engineering for modern businesses.",
+      s1t: "Web Development",
+      s1d: "High-performance websites built for scale.",
+      s2t: "Mobile Apps",
+      s2d: "Android apps engineered with scalable logic.",
+      s3t: "Custom Software",
+      s3d: "Automation systems and data-entry solutions.",
+      testimonialsKicker: "Client Feedback",
+      testimonialsTitle: "5-Star Fiverr Reviews",
+      t1n: "Fiverr Client — rookie creator",
+      t1r: "★★★★★ \"Seller performs detailed work with much creativity. Very professional, excellent communications, performs tasks successfully. Will return again.\"",
+      t2n: "Fiverr Client — Custom Web Tool",
+      t2r: "★★★★★ \"Aznorix understood the requirements quickly and built a clean, fast solution. Highly recommended.\"",
+      projectsKicker: "Selected Work",
+      projectsTitle: "Featured Projects",
+      contactKicker: "Let's Build",
+      contactTitle: "Start Your Project",
+      sendBtn: "Send Message",
+      formNamePlaceholder: "Your Name",
+      formEmailPlaceholder: "Your Email",
+      formMessagePlaceholder: "Describe your project..."
+    },
+    ur: {
+      navServices: "سروسز",
+      navProjects: "پروجیکٹس",
+      navContact: "رابطہ",
+      navPortfolio: "پورٹ فولیو",
+      heroKicker: "اعلیٰ ڈیجیٹل انجینئرنگ",
+      heroTitlePrefix: "ہم بناتے ہیں",
+      heroTitleAccent: "ہائی کنورٹنگ",
+      heroTitleSuffix: "ویب اور ایپ تجربات",
+      heroSub: "Aznorix ترقی چاہنے والے برانڈز کے لیے تیز، اسکیل ایبل اور کنورژن فوکسڈ پراڈکٹس تیار کرتا ہے۔",
+      heroBtn: "فری اسٹریٹجی کال بُک کریں",
+      heroWhatsAppBtn: "واٹس ایپ پر چیٹ کریں",
+      trustKicker: "اعتماد اور اتھارٹی",
+      trustTitle: "بزنس Aznorix کو کیوں منتخب کرتے ہیں",
+      trustSub: "کوالٹی فرسٹ انجینئرنگ اور تیز تر ڈلیوری کے ساتھ عالمی کلائنٹس کا اعتماد۔",
+      trust1t: "5 اسٹار ریٹڈ",
+      trust1d: "کوالٹی، کمیونیکیشن اور نتائج پر مستقل بہترین فیڈبیک۔",
+      trust2t: "تیز ڈلیوری",
+      trust2d: "اسمارٹ پراسیس کے ساتھ وقت پر پروڈکشن ریڈی میل اسٹونز۔",
+      trust3t: "انٹرنیشنل کلائنٹس",
+      trust3d: "مختلف ٹائم زونز میں عالمی ٹیموں کے ساتھ کامیاب کام کا تجربہ۔",
+      servicesKicker: "اہم سروسز",
+      servicesTitle: "ہم کیا کرتے ہیں",
+      servicesSub: "ماڈرن بزنس کے لیے مکمل پروڈکٹ انجینئرنگ۔",
+      s1t: "ویب ڈیولپمنٹ",
+      s1d: "تیز رفتار اور اسکیل ایبل ویب سائٹس۔",
+      s2t: "موبائل ایپس",
+      s2d: "مضبوط لاجک کے ساتھ اینڈرائیڈ ایپس۔",
+      s3t: "کسٹم سافٹ ویئر",
+      s3d: "آٹومیشن سسٹمز اور حسبِ ضرورت حل۔",
+      testimonialsKicker: "کلائنٹ فیڈبیک",
+      testimonialsTitle: "Fiverr کی 5 اسٹار ریویوز",
+      t1n: "Fiverr کلائنٹ — ای کامرس پروجیکٹ",
+      t1r: "★★★★★ \"انتہائی پروفیشنل اور وقت سے پہلے بہترین نتیجہ دیا۔\"",
+      t2n: "Fiverr کلائنٹ — کسٹم ویب ٹول",
+      t2r: "★★★★★ \"ضروریات جلد سمجھیں اور تیز، صاف ستھرا حل فراہم کیا۔\"",
+      projectsKicker: "منتخب کام",
+      projectsTitle: "نمایاں پروجیکٹس",
+      contactKicker: "آئیے بناتے ہیں",
+      contactTitle: "اپنا پروجیکٹ شروع کریں",
+      sendBtn: "پیغام بھیجیں",
+      formNamePlaceholder: "آپ کا نام",
+      formEmailPlaceholder: "آپ کا ای میل",
+      formMessagePlaceholder: "اپنے پروجیکٹ کی تفصیل لکھیں..."
+    },
+    ar: {
+      navServices: "الخدمات",
+      navProjects: "المشاريع",
+      navContact: "تواصل",
+      navPortfolio: "أعمالنا",
+      heroKicker: "هندسة رقمية متقدمة",
+      heroTitlePrefix: "نبني",
+      heroTitleAccent: "تجارب عالية التحويل",
+      heroTitleSuffix: "للويب والتطبيقات",
+      heroSub: "تتعاون Aznorix مع العلامات الطموحة لتطوير منتجات سريعة وقابلة للتوسع وموجهة للنمو.",
+      heroBtn: "احجز مكالمة استراتيجية مجانية",
+      heroWhatsAppBtn: "تواصل عبر واتساب",
+      trustKicker: "الثقة والاعتمادية",
+      trustTitle: "لماذا تختار الشركات Aznorix",
+      trustSub: "هندسة عالية الجودة وتسليم سريع يعتمد عليه عملاء من مختلف الدول.",
+      trust1t: "تقييم 5 نجوم",
+      trust1d: "آراء ممتازة باستمرار في الجودة والتواصل والنتائج.",
+      trust2t: "تسليم سريع",
+      trust2d: "تنفيذ مرن يقدّم مراحل جاهزة للإنتاج في الوقت المحدد.",
+      trust3t: "عملاء دوليون",
+      trust3d: "خبرة مثبتة في التعاون مع فرق ومؤسسين حول العالم.",
+      servicesKicker: "الخدمات الأساسية",
+      servicesTitle: "ماذا نقدم",
+      servicesSub: "هندسة منتجات متكاملة للشركات الحديثة.",
+      s1t: "تطوير الويب",
+      s1d: "مواقع عالية الأداء وقابلة للتوسع.",
+      s2t: "تطوير التطبيقات",
+      s2d: "تطبيقات أندرويد قوية بمنطق قابل للنمو.",
+      s3t: "برمجيات مخصصة",
+      s3d: "أنظمة أتمتة وحلول رقمية حسب الطلب.",
+      testimonialsKicker: "آراء العملاء",
+      testimonialsTitle: "تقييمات Fiverr بخمس نجوم",
+      t1n: "عميل Fiverr — مشروع تجارة إلكترونية",
+      t1r: "★★★★★ \"عمل احترافي ممتاز وتسليم أسرع من المتوقع.\"",
+      t2n: "عميل Fiverr — أداة ويب مخصصة",
+      t2r: "★★★★★ \"فهم المتطلبات بسرعة وقدّم حلاً نظيفًا وسريعًا.\"",
+      projectsKicker: "أعمال مختارة",
+      projectsTitle: "المشاريع المميزة",
+      contactKicker: "لنبدأ البناء",
+      contactTitle: "ابدأ مشروعك",
+      sendBtn: "إرسال",
+      formNamePlaceholder: "اسمك",
+      formEmailPlaceholder: "بريدك الإلكتروني",
+      formMessagePlaceholder: "اكتب تفاصيل مشروعك..."
+    }
+  };
 
-const langSwitcher=document.getElementById("langSwitcher");
-const savedLang=localStorage.getItem("lang")||"en";
-langSwitcher.value=savedLang;
-applyLang(savedLang);
-langSwitcher.addEventListener("change",e=>applyLang(e.target.value));
+  function applyLang(lang) {
+    const dict = translations[lang] || translations.en;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === "ar" || lang === "ur") ? "rtl" : "ltr";
+    
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (dict[key]) {
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+          el.placeholder = dict[key];
+        } else {
+          el.textContent = dict[key];
+        }
+      }
+    });
+    
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+      const key = el.getAttribute("data-i18n-placeholder");
+      if (dict[key]) el.placeholder = dict[key];
+    });
+    
+    localStorage.setItem("lang", lang);
+  }
 
-/* Theme */
-const root=document.documentElement;
-const themeToggle=document.getElementById("themeToggle");
-const savedTheme=localStorage.getItem("theme")||"light";
-root.classList.toggle("theme-light",savedTheme==="light");
-themeToggle.textContent=savedTheme==="light"?"☀️":"🌙";
-themeToggle.onclick=()=>{
-const isLight=root.classList.toggle("theme-light");
-localStorage.setItem("theme",isLight?"light":"dark");
-themeToggle.textContent=isLight?"☀️":"🌙";
-};
+  const langSwitcher = document.getElementById("langSwitcher");
+  if (langSwitcher) {
+    const savedLang = localStorage.getItem("lang") || "en";
+    langSwitcher.value = savedLang;
+    applyLang(savedLang);
+    langSwitcher.addEventListener("change", function(e) {
+      applyLang(e.target.value);
+    });
+  }
 
-/* Mobile */
-const menu=document.getElementById("menu");
-document.getElementById("mobileToggle").onclick=()=>menu.classList.toggle("show");
+  // Theme toggling
+  const root = document.documentElement;
+  const themeToggle = document.getElementById("themeToggle");
+  const savedTheme = localStorage.getItem("theme") || "light";
+  
+  function updateTheme(isLight) {
+    root.classList.toggle("theme-light", isLight);
+    themeToggle.textContent = isLight ? "☀️" : "🌙";
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+  }
+  
+  updateTheme(savedTheme === "light");
+  
+  if (themeToggle) {
+    themeToggle.onclick = function() {
+      const isLight = !root.classList.contains("theme-light");
+      updateTheme(isLight);
+    };
+  }
 
-/* Reveal */
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting) entry.target.classList.add("active");
-});
-},{threshold:.2});
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+  // Mobile menu toggle
+  const menu = document.getElementById("menu");
+  const mobileToggle = document.getElementById("mobileToggle");
+  
+  if (mobileToggle && menu) {
+    mobileToggle.onclick = function() {
+      menu.classList.toggle("show");
+    };
+    
+    // Close menu when clicking outside
+    document.addEventListener("click", function(event) {
+      if (!menu.contains(event.target) && !mobileToggle.contains(event.target)) {
+        menu.classList.remove("show");
+      }
+    });
+  }
 
-/* Particles */
-const canvas=document.getElementById("bg-canvas");
-const ctx=canvas.getContext("2d");
-let w,h;
-const particles=[];
-const COUNT=35;
-const MAX_DIST=130;
+  // Reveal animations
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      }
+    });
+  }, { threshold: 0.2 });
+  
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-function resizeCanvas(){
-w=canvas.width=window.innerWidth;
-h=canvas.height=window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener("resize",resizeCanvas);
+  // Particles canvas
+  const canvas = document.getElementById("bg-canvas");
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    let w, h;
+    const particles = [];
+    const COUNT = 35;
+    const MAX_DIST = 130;
 
-class Particle{
-constructor(){
-this.x=Math.random()*w;
-this.y=Math.random()*h;
-this.vx=(Math.random()-.5)*0.35;
-this.vy=(Math.random()-.5)*0.35;
-this.size=Math.random()*1.5+0.5;
-}
-update(){
-this.x+=this.vx;
-this.y+=this.vy;
-if(this.x<0||this.x>w) this.vx*=-1;
-if(this.y<0||this.y>h) this.vy*=-1;
-}
-draw(){
-ctx.beginPath();
-ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-ctx.fillStyle="rgba(20,184,166,.5)";
-ctx.fill();
-}
-}
+    function resizeCanvas() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
-for(let i=0;i<COUNT;i++) particles.push(new Particle());
+    class Particle {
+      constructor() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.vx = (Math.random() - 0.5) * 0.35;
+        this.vy = (Math.random() - 0.5) * 0.35;
+        this.size = Math.random() * 1.5 + 0.5;
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > w) this.vx *= -1;
+        if (this.y < 0 || this.y > h) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(20,184,166,0.5)";
+        ctx.fill();
+      }
+    }
 
-function animate(){
-ctx.clearRect(0,0,w,h);
-for(let i=0;i<particles.length;i++){
-for(let j=i+1;j<particles.length;j++){
-const dx=particles[i].x-particles[j].x;
-const dy=particles[i].y-particles[j].y;
-const dist=Math.hypot(dx,dy);
-if(dist<MAX_DIST){
-const alpha=1-dist/MAX_DIST;
-ctx.strokeStyle=`rgba(255,255,255,${alpha*.04})`;
-ctx.beginPath();
-ctx.moveTo(particles[i].x,particles[i].y);
-ctx.lineTo(particles[j].x,particles[j].y);
-ctx.stroke();
-}
-}
-particles[i].update();
-particles[i].draw();
-}
-requestAnimationFrame(animate);
-}
-animate();
+    for (let i = 0; i < COUNT; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+      
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.hypot(dx, dy);
+          
+          if (dist < MAX_DIST) {
+            const alpha = 1 - dist / MAX_DIST;
+            ctx.strokeStyle = `rgba(255,255,255,${alpha * 0.04})`;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+        
+        particles[i].update();
+        particles[i].draw();
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+  }
+})();
 </script>
 
 </body>
